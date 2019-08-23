@@ -33,7 +33,7 @@ pipeline {
                   "-Pcontract-tests " +
                   "-Dpact.provider.version=${PROD_VERSION} " +
                   "-Dpact.verifier.publishResults=true " +
-                  "-Dpactbroker.tags=master,${parameters.pactConsumerTags}"
+                  "-Dpactbroker.tags=prod,${parameters.pactConsumerTags}"
         }
       }
     }
