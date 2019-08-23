@@ -11,14 +11,14 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.0.5.RELEASE</version>
+    <version>2.1.0.RELEASE</version>
   </parent>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
-    <pact.version>3.5.23</pact.version>
+    <pact.version>3.6.12</pact.version>
   </properties>
 
 
@@ -45,17 +45,31 @@
       <version>${pact.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>au.com.dius</groupId>
+      <artifactId>pact-jvm-consumer-junit_2.12</artifactId>
+      <version>${pact.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.1</version>
+        <configuration>
+          <useSystemClassLoader>false</useSystemClassLoader>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>au.com.dius</groupId>
         <artifactId>pact-jvm-provider-maven_2.12</artifactId>
         <version>${pact.version}</version>
         <configuration>
-          <!-- broker_app is the service name in docker-compose -->
-          <pactBrokerUrl>http://broker_app</pactBrokerUrl>
+          <!-- pact_broker is the service name in docker-compose -->
+          <pactBrokerUrl>http://pact_broker</pactBrokerUrl>
           <projectVersion>${pact.consumer.version}</projectVersion>
           <tags>
             <tag>${pact.tag}</tag>
