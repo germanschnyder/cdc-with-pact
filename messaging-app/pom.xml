@@ -50,12 +50,20 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.1</version>
+        <configuration>
+          <useSystemClassLoader>false</useSystemClassLoader>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>au.com.dius</groupId>
         <artifactId>pact-jvm-provider-maven_2.12</artifactId>
         <version>${pact.version}</version>
         <configuration>
           <!-- pact_broker is the service name in docker-compose -->
-          <pactBrokerUrl>http://pact_broker</pactBrokerUrl>
+          <pactBrokerUrl>http://localhost</pactBrokerUrl>
           <projectVersion>${pact.consumer.version}</projectVersion>
           <tags>
             <tag>${pact.tag}</tag>
