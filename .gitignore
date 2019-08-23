@@ -4,3 +4,5 @@ infrastructure/jenkins/jenkins_home/
 target/
 .DS_Store
 .target
+.project
+.settings
